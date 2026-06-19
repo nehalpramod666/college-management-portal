@@ -1,16 +1,28 @@
 const Student = require("../models/Student");
 const User = require("../models/User");
 const Department = require("../models/Department");
+const mongoose = require("mongoose");
 
 // Create Student
 const createStudent = async (req, res) => {
   try {
-    const {
-      user,
-      rollNumber,
-      department,
-      semester,
-    } = req.body;
+    const { user, rollNumber, department, semester } = req.body;
+    console.log("REQ BODY:", req.body);
+
+    // ✅ ADD THIS (FIX 3)
+    if (!mongoose.Types.ObjectId.isValid(user)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user ID",
+      });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(department)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid department ID",
+      });
+    }
 
     const userExists = await User.findById(user);
     const departmentExists = await Department.findById(department);
