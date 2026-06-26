@@ -10,6 +10,7 @@ const facultyRoutes = require("./routes/facultyRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
 const resultRoutes = require("./routes/resultRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const enrollmentRoutes = require("./routes/enrollmentRoutes");
 
 dotenv.config();
 
@@ -40,6 +41,8 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/results", resultRoutes);
 
 app.use("/api/dashboard", dashboardRoutes);
+
+app.use("/api/enrollments", enrollmentRoutes);
 
 app.get("/", (req, res) => {
   res.json({

@@ -8,6 +8,7 @@ const links = [
   { path: "/admin/courses", label: "Courses" },
   { path: "/admin/students", label: "Students" },
   { path: "/admin/faculty", label: "Faculty" },
+  { path: "/admin/enrollments", label: "Enrollments" },
 ];
 
 const AdminLayout = () => {

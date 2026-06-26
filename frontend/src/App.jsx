@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Enrollments from "./pages/admin/Enrollments";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import Home from "./pages/Home";
 
 import AdminLayout from "./layouts/AdminLayout";
 import FacultyLayout from "./layouts/FacultyLayout";
@@ -39,6 +40,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<HomeRedirect />} />
@@ -67,6 +69,7 @@ function App() {
             <Route path="courses" element={<Courses />} />
             <Route path="students" element={<Students />} />
             <Route path="faculty" element={<Faculty />} />
+            <Route path="enrollments" element={<Enrollments />} />
           </Route>
 
           {/* Faculty routes */}
