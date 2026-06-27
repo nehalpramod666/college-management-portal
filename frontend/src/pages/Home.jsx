@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import logo from "../assets/logo.png";
+import collegeImg from "../assets/img_college.png";
 
 const NAV_LINKS = ["About", "Courses", "Contact"];
 
@@ -92,8 +94,8 @@ const Home = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
-              KTM
+            <div>
+              <img src={logo} alt="KTM Logo" className="w-12 h-12 rounded-full object-cover" />
             </div>
             <span className="font-semibold text-gray-800 text-sm leading-tight">
               KTM College of <br className="hidden sm:block" />
@@ -208,31 +210,35 @@ const Home = () => {
         )}
       </header>
 
-      {/* ── HERO ── */}
-      <section className="pt-32 pb-24 bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col items-center text-center gap-6">
+      {/* HERO */}
+      <section
+        className="pt-32 pb-24 text-white bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${collegeImg})` }}
+      >
+        <div className="absolute inset-0 bg-black/55"></div>
+
+        <div className="relative max-w-6xl mx-auto px-6 flex flex-col items-center text-center gap-6">
           <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-widest">
             Established 1999
           </span>
+
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight max-w-3xl">
             KTM College of Science and Technology
           </h1>
+
           <p className="text-lg text-blue-100 max-w-xl">
             Empowering the next generation of innovators, engineers, and leaders
             through world-class education and research.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center mt-2">
-            
-            <button
-              onClick={() => scrollTo("about")}
-              className="px-6 py-3 bg-transparent border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition"
-            >
-              Learn More
-            </button>
-          </div>
+
+          <button
+            onClick={() => scrollTo("about")}
+            className="px-6 py-3 bg-transparent border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition"
+          >
+            Learn More
+          </button>
         </div>
       </section>
-
       {/* ── STATS ── */}
       <section className="py-12 bg-gray-50 border-y border-gray-200">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
