@@ -70,7 +70,6 @@ const Home = () => {
     message: "",
   });
   const [formSent, setFormSent] = useState(false);
-
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
@@ -113,12 +112,37 @@ const Home = () => {
                 {link}
               </button>
             ))}
-            <button
-              onClick={() => navigate("/login")}
-              className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
-            >
-              Login to Portal
-            </button>
+
+            <div className="relative group">
+              <button className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
+                Login
+              </button>
+
+              <div className="absolute right-0 top-full pt-2 w-48 hidden group-hover:block z-50">
+                <div className="bg-white rounded-lg shadow-lg border">
+                <button
+                  onClick={() => navigate("/login/student")}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Student Login
+                </button>
+
+                <button
+                  onClick={() => navigate("/login/faculty")}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Faculty Login
+                </button>
+
+                <button
+                  onClick={() => navigate("/login/admin")}
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                >
+                  Admin Login
+                </button>
+              </div>
+            </div>
+          </div>
           </nav>
 
           {/* Mobile menu button */}
@@ -147,18 +171,45 @@ const Home = () => {
                 {link}
               </button>
             ))}
-            <button
-              onClick={() => navigate("/login")}
-              className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
-            >
-              Login to Portal
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setLoginOpen(!loginOpen)}
+                className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
+              >
+                Login ▼
+              </button>
+
+              {loginOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border">
+                  <button
+                    onClick={() => navigate("/login/student")}
+                    className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                  >
+                    Student Login
+                  </button>
+
+                  <button
+                    onClick={() => navigate("/login/faculty")}
+                    className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                  >
+                    Faculty Login
+                  </button>
+
+                  <button
+                    onClick={() => navigate("/login/admin")}
+                    className="block w-full text-left px-4 py-3 hover:bg-gray-100"
+                  >
+                    Admin Login
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </header>
 
       {/* ── HERO ── */}
-      <section className="pt-32 pb-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
+      <section className="pt-32 pb-24 bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
         <div className="max-w-6xl mx-auto px-6 flex flex-col items-center text-center gap-6">
           <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-widest">
             Established 1999
@@ -171,12 +222,7 @@ const Home = () => {
             through world-class education and research.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-2">
-            <button
-              onClick={() => navigate("/login")}
-              className="px-6 py-3 bg-white text-blue-700 font-semibold rounded-md hover:bg-blue-50 transition"
-            >
-              Login to Portal
-            </button>
+            
             <button
               onClick={() => scrollTo("about")}
               className="px-6 py-3 bg-transparent border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition"
@@ -507,12 +553,9 @@ const Home = () => {
             KTM College of Science and Technology
           </p>
           <p>© {new Date().getFullYear()} All rights reserved.</p>
-          <button
-            onClick={() => navigate("/login")}
-            className="text-blue-400 hover:text-blue-300 transition"
-          >
-            Staff & Student Portal →
-          </button>
+          <p className="text-blue-400">
+            Staff & Student Portal
+          </p>
         </div>
       </footer>
 

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { role } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +20,15 @@ const Login = () => {
 
     try {
       const user = await login(email, password);
+
+      if (role && user.role !== role) {
+        setError(`This account is not authorized for ${role} portal.`);
+        return;
+      }
       if (user.role === "admin") navigate("/admin");
       else if (user.role === "faculty") navigate("/faculty");
       else navigate("/student");
+
     } catch (err) {
       setError(
         err.response?.data?.message || "Login failed. Please try again."
@@ -45,7 +53,9 @@ const Login = () => {
 </div>
       <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          College Portal Login
+          {role
+            ? `${role.charAt(0).toUpperCase() + role.slice(1)} Portal Login`
+            : "College Portal Login"}
         </h1>
 
         {error && (

@@ -34,7 +34,7 @@ const Register = () => {
         formData.role
       );
       setSuccess("Registered successfully! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/portal-selection"), 1500);
     } catch (err) {
       setError(
         err.response?.data?.message || "Registration failed. Try again."
@@ -143,9 +143,9 @@ const Register = () => {
 
         <p className="mt-4 text-sm text-center text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 hover:underline">
-            Login
-          </Link>
+        <Link to="/portal-selection" className="text-blue-600 hover:underline">
+          Login
+        </Link>
         </p>
       </div>
     </div>

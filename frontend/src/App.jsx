@@ -4,6 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Enrollments from "./pages/admin/Enrollments";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import PortalSelection from "./pages/auth/PortalSelection";
 import Home from "./pages/Home";
 
 import AdminLayout from "./layouts/AdminLayout";
@@ -41,7 +42,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/portal-selection" element={<PortalSelection />} />
+          <Route path="/login/:role" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<HomeRedirect />} />
           <Route
