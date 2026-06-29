@@ -20,31 +20,32 @@ const EnterResults = () => {
   if (!course) return;
   const load = async () => {
     try {
-      const [enrollRes, resultRes] = await Promise.all([
-        api.get(`/enrollments/course/${course._id}`),
-        api.get("/results"),
-      ]);
-
-      // Get the actual Student objects from enrollments
-      const enrolledStudents = enrollRes.data.enrollments.map(
-        (e) => e.student
-      );
+      // Get enrolled students for this course
+      const enrollRes = await api.get(`/enrollments/course/${course._id}`);
+      const enrolledStudents = enrollRes.data.enrollments.map((e) => e.student);
       setStudents(enrolledStudents);
 
-      // Map existing results by studentId for this course
+      // Fetch results for each enrolled student individually
       const existing = {};
       const existingIds = {};
-      enrolledStudents.forEach((s) => {
-        const result = resultRes.data.results.find(
-          (r) =>
-            (r.student?._id === s._id || r.student === s._id) &&
-            (r.course?._id === course._id || r.course === course._id)
-        );
-        if (result) {
-          existing[s._id] = result.marks;
-          existingIds[s._id] = result._id;
-        }
-      });
+
+      await Promise.all(
+        enrolledStudents.map(async (student) => {
+          try {
+            const res = await api.get(`/results/student/${student._id}`);
+            const match = res.data.results.find(
+              (r) =>
+                r.course?._id === course._id || r.course === course._id
+            );
+            if (match) {
+              existing[student._id] = match.marks;
+              existingIds[student._id] = match._id;
+            }
+          } catch {
+            // student has no results yet, that's fine
+          }
+        })
+      );
 
       setMarks(existing);
       setExistingResults(existingIds);

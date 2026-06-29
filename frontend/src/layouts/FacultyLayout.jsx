@@ -4,8 +4,6 @@ import Navbar from "../components/Navbar";
 
 const links = [
   { path: "/faculty", label: "My Courses", end: true },
-  { path: "/faculty/attendance", label: "Mark Attendance" },
-  { path: "/faculty/results", label: "Enter Results" },
 ];
 
 const FacultyLayout = () => {
