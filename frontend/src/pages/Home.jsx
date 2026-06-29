@@ -2,15 +2,25 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import collegeImg from "../assets/img_college.png";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import {
+ FaFacebookF,
+ FaInstagram,
+ FaYoutube,
+ FaTwitter,
+} from "react-icons/fa";
 
 const NAV_LINKS = ["About", "Courses", "Contact"];
 
 const STATS = [
-  { value: "5000+", label: "Students Enrolled" },
-  { value: "200+", label: "Faculty Members" },
-  { value: "50+", label: "Courses Offered" },
-  { value: "25+", label: "Years of Excellence" },
+  { value: 5000, suffix: "+", label: "Students Enrolled" },
+  { value: 200, suffix: "+", label: "Faculty Members" },
+  { value: 50, suffix: "+", label: "Courses Offered" },
+  { value: 25, suffix: "+", label: "Years of Excellence" },
 ];
+
+
 
 const COURSES = [
   {
@@ -244,7 +254,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl font-bold text-blue-600">{stat.value}</p>
+              <p className="text-3xl font-bold text-black-600">{stat.value}</p>
               <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
             </div>
           ))}
@@ -420,151 +430,169 @@ const Home = () => {
           </div>
         </div>
       </section>
+{/* CONTACT */}
+<section
+  id="contact"
+  className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50"
+>
+  <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
 
-      {/* ── CONTACT ── */}
-      <section id="contact" className="py-20">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600">
-              Contact Us
-            </span>
-            <h2 className="text-3xl font-bold text-gray-800 mt-2 mb-4">
-              Get in Touch
-            </h2>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Have questions about admissions, programs, or the portal? We're
-              here to help.
-            </p>
-            <div className="flex flex-col gap-4 text-sm text-gray-600">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-medium text-gray-800">Address</p>
-                  <p>KTM Campus, College Road, Kerala, India</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-medium text-gray-800">Email</p>
-                  <p>info@ktmcollege.ac.in</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-medium text-gray-800">Phone</p>
-                  <p>+91 98765 43210</p>
-                </div>
-              </div>
-            </div>
+    {/* LEFT SIDE */}
+    <div>
+      <span className="text-blue-600 uppercase tracking-[4px] font-semibold text-sm">
+        CONTACT US
+      </span>
+
+      <h2 className="text-5xl font-bold text-gray-900 mt-4 leading-tight">
+        Let's Build Your
+        <br />
+        Future Together
+      </h2>
+
+      <p className="text-gray-500 mt-6 text-lg leading-8">
+        Have questions about admissions, academics or our portal?
+        We'd love to hear from you.
+      </p>
+
+      <div className="space-y-6 mt-10">
+
+        <div className="flex items-center gap-5">
+          <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center shadow">
+            📍
           </div>
 
-          {/* Contact form */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
-            {formSent ? (
-              <div className="flex flex-col items-center justify-center h-full gap-3 py-10">
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p className="text-base font-semibold text-gray-800">Message Sent!</p>
-                <p className="text-sm text-gray-500 text-center">
-                  Thank you for reaching out. We'll get back to you shortly.
-                </p>
-                <button
-                  onClick={() => setFormSent(false)}
-                  className="mt-2 text-sm text-blue-600 hover:underline"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-                <h3 className="text-base font-semibold text-gray-800">
-                  Send us a message
-                </h3>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleFormChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleFormChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="you@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleFormChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                    placeholder="How can we help you?"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
+          <div>
+            <h4 className="font-semibold text-lg">Campus Address</h4>
+            <p className="text-gray-500">
+              KTM Campus, Kerala, India
+            </p>
           </div>
         </div>
-      </section>
+
+        <div className="flex items-center gap-5">
+          <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center shadow">
+            📧
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg">Email</h4>
+            <p className="text-gray-500">
+              info@ktmcollege.ac.in
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-5">
+          <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center shadow">
+            📞
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg">Phone</h4>
+            <p className="text-gray-500">
+              +91 98765 43210
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {/* RIGHT CARD */}
+
+    <div className="bg-white shadow-2xl rounded-3xl p-10 border border-gray-100">
+
+      <h3 className="text-3xl font-bold mb-8">
+        Send us a Message
+      </h3>
+
+      <form className="space-y-6">
+
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="w-full p-4 rounded-xl border focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+
+        <input
+          type="email"
+          placeholder="Email Address"
+          className="w-full p-4 rounded-xl border focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+
+        <textarea
+          rows="5"
+          placeholder="Your Message"
+          className="w-full p-4 rounded-xl border resize-none focus:ring-2 focus:ring-blue-500 outline-none"
+        ></textarea>
+
+        <button
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition duration-300"
+        >
+          Send Message →
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
-          <p className="font-medium text-white">
-            KTM College of Science and Technology
-          </p>
-          <p>© {new Date().getFullYear()} All rights reserved.</p>
-          <p className="text-blue-400">
-            Staff & Student Portal
-          </p>
-        </div>
-      </footer>
+      <footer className="bg-[#1d1d1d] text-white pt-20 pb-10">
 
+<div className="max-w-6xl mx-auto px-6">
+
+<div className="text-center">
+
+<h2 className="text-4xl font-bold">
+KTM is social at
+</h2>
+
+<div className="flex justify-center gap-8 mt-10">
+
+<a
+href="#"
+className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-blue-600 hover:text-white duration-300"
+>
+<FaFacebookF/>
+</a>
+
+<a
+href="#"
+className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-sky-500 hover:text-white duration-300"
+>
+<FaTwitter/>
+</a>
+
+<a
+href="#"
+className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-red-600 hover:text-white duration-300"
+>
+<FaYoutube/>
+</a>
+
+<a
+href="#"
+className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-pink-600 hover:text-white duration-300"
+>
+<FaInstagram/>
+</a>
+
+</div>
+
+<hr className="my-14 border-gray-700"/>
+
+<p className="text-gray-400">
+© 2026 KTM College of Science and Technology
+</p>
+
+</div>
+
+</div>
+
+</footer>
     </div>
   );
 };
