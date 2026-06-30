@@ -566,11 +566,13 @@ className="w-16 h-16 bg-white rounded-full flex items-center justify-center text
 <FaTwitter/>
 </a>
 
-<a
-href="#"
-className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-red-600 hover:text-white duration-300"
+<a     
+href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black text-3xl hover:bg-red-600 hover:text-white duration-300"
 >
-<FaYoutube/>
+  <FaYoutube/>
 </a>
 
 <a
